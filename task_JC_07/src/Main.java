@@ -15,7 +15,7 @@ public class Main {
       System.out.println("Wrong format");
       return;
     }
-пше
+
     CalculatorManager calculatorManager = new CalculatorManager(threadNum, iterationNum);
     System.out.println(calculatorManager.calculateRes());
     System.out.println(Math.PI/4);
