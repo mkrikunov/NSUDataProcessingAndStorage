@@ -18,7 +18,7 @@ public class Calculator implements Callable<Double> {
     int sign;
 
     for (int i = 0; i < iterationNum; i++) {
-      if (currentThreadNum % 2 == 0) {
+      if (foldingNum % 2 == 0) {
         sign = 1;
       } else {
         sign = -1;
