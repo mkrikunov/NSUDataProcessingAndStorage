@@ -11,11 +11,11 @@ public class MyList {
 
   private volatile Node head = null;
 
-  public void add(String value) {
+  public synchronized void add(String value) {
     head = new Node(value, head);
   }
 
-  public void print() {
+  public synchronized void print() {
     Node currHead = head;
     while (currHead != null) {
       System.out.println(currHead.value);
@@ -23,7 +23,7 @@ public class MyList {
     }
   }
 
-  public void sort() {
+  public synchronized void sort() {
     Node i = head;
     while (i != null) {
       Node j = i.next;

@@ -10,7 +10,9 @@ public class Main {
     timer.schedule(new TimerTask() {
       @Override
       public void run() {
-        myList.sort();
+        synchronized (myList) {
+          myList.sort();
+        }
       }
     }, 5000, 5000);
 
@@ -18,9 +20,13 @@ public class Main {
     while (Boolean.TRUE) {
       String string = scanner.nextLine();
       if (string.isEmpty()) {
-        myList.print();
+        synchronized (myList) {
+          myList.print();
+        }
       } else {
-        myList.add(string);
+        synchronized (myList) {
+          myList.add(string);
+        }
       }
     }
   }
