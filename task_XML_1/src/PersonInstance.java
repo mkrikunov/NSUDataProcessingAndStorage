@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class PersonInstance {
+public class  PersonInstance {
   public String ID;
   public String firstName;
   public String lastName;
@@ -37,6 +37,14 @@ public class PersonInstance {
   public Set<String> sistersID = new HashSet<String>();
   public Set<String> sistersName = new HashSet<String>();
 
+  private void mergeSets(Set<String> set1, Set<String> set2) {
+    for (String item : set2) {
+      if (!set1.contains(item)) {
+        set1.add(item);
+      }
+    }
+  }
+
   public void merge(PersonInstance person) {
     if (person == null)
       return;
@@ -63,12 +71,12 @@ public class PersonInstance {
     if (wifeName == null)
       wifeName = person.wifeName;
 
-    parentsID.addAll(person.parentsID);
+    mergeSets(parentsID, person.parentsID);
     if (motherID == null)
       motherID = person.motherID;
     if (fatherID == null)
       fatherID = person.fatherID;
-    parentsName.addAll(person.parentsName);
+    mergeSets(parentsName, person.parentsName);
     if (motherName == null)
       motherName = person.motherName;
     if (fatherName == null)
@@ -76,21 +84,21 @@ public class PersonInstance {
 
     if (childrenCount == null)
       childrenCount = person.childrenCount;
-    childrenID.addAll(person.childrenID);
-    childrenName.addAll(person.childrenName);
-    sonsID.addAll(person.sonsID);
-    sonsName.addAll(person.sonsName);
-    daughtersID.addAll(person.daughtersID);
-    daughtersName.addAll(person.daughtersName);
+    mergeSets(childrenID, person.childrenID);
+    mergeSets(childrenName, person.childrenName);
+    mergeSets(sonsID, person.sonsID);
+    mergeSets(sonsName, person.sonsName);
+    mergeSets(daughtersID, person.daughtersID);
+    mergeSets(daughtersName, person.daughtersName);
 
     if (siblingsCount == null)
       siblingsCount = person.siblingsCount;
-    siblingsID.addAll(person.siblingsID);
-    brothersID.addAll(person.brothersID);
-    sistersID.addAll(person.sistersID);
-    siblingsName.addAll(person.siblingsName);
-    brothersName.addAll(person.brothersName);
-    sistersName.addAll(person.sistersName);
+    mergeSets(siblingsID, person.siblingsID);
+    mergeSets(siblingsName, person.siblingsName);
+    mergeSets(brothersID, person.brothersID);
+    mergeSets(brothersName, person.brothersName);
+    mergeSets(sistersID, person.sistersID);
+    mergeSets(sistersName, person.sistersName);
   }
 
   @Override
@@ -98,8 +106,17 @@ public class PersonInstance {
     return "ID: " + ID + " " +
         " | name: " + firstName + " " + lastName + " " +
         " | gender: " + gender + " " +
+
         " | spouceID: " + spouceID + " " +
-        " | siblings: " + siblingsID.toString() + ", count: " + siblingsCount + " " +
-        " | children count: " + childrenCount;
+        " | spouceName: " + spouceName + " " +
+
+        " | fatherID: " + fatherID + " " +
+        " | fatherName: " + fatherName + " " +
+        " | motherID: " + motherID + " " +
+        " | motherName: " + motherName + " " +
+
+        " | siblings: " + siblingsName.toString() + ", count: " + siblingsCount + " " +
+
+        " | children: " + childrenName.toString() + ", count: " + childrenCount + " ";
   }
 }
