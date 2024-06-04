@@ -1,0 +1,1 @@
+SELECT flight_id FROM flights WHERE flight_id = :flight_id
