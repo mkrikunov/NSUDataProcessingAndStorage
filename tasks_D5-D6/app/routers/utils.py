@@ -19,8 +19,8 @@ def translate_text(text, src_lang='en', dest_lang='ru'):
 def parse_airport(row):
     return Airport(
         airport_code=row['airport_code'],
-        airport_name=json.loads(row['airport_name']),  # Преобразование строки JSON в словарь
-        city=json.loads(row['city']),  # Снова преобразование
+        airport_name=json.loads(row['airport_name']),
+        city=json.loads(row['city']),
         coordinates=f"{row['coordinates'].x}, {row['coordinates'].y}",
         timezone=row['timezone']
     )
@@ -35,7 +35,7 @@ def generate_passenger_id():
 def parse_schedule(row, flag):
     if flag == "is_inbound":
         return ScheduleIn(
-            day_of_week=row['day_of_week'].strip(),  # Убираем пробелы
+            day_of_week=row['day_of_week'].strip(),
             arrival_time=row['arrival_time'],
             flight_no=row['flight_no'],
             origin=row['origin']

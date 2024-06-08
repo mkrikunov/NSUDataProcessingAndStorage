@@ -78,13 +78,6 @@ async def create_booking(booking: BookingCreate):
                 "fare_conditions": booking.fare_conditions,
                 "amount": booking.amount
             })
-            # Вставка данных в таблицу boarding_passes:
-            await database.execute(load_query(insert_into_boarding_passes_file), values={
-                "ticket_no": ticket_no,
-                "flight_id": booking.flight_id,
-                "boarding_no": new_boarding_no,
-                "seat_no": seat_no
-            })
 
         return BookingResponse(
             book_ref=book_ref,

@@ -23,14 +23,15 @@ async def online_check_in(checkin_request: CheckInRequest):
     # Проверка наличия билета и рейса:
     ticket_query = load_query(check_for_ticket_availability_file)
     flight_query = load_query(check_for_flight_availability_file)
-    ticket_result = await database.fetch_one(ticket_query, values={"ticket_no": checkin_request.ticket_no})
-    flight_result = await database.fetch_one(flight_query, values={"flight_id": checkin_request.flight_id})
-
+    ticket_result = await database.fetch_one(ticket_query,
+                                             values={"ticket_no": checkin_request.ticket_no})
+    flight_result = await database.fetch_one(flight_query,
+                                             values={"flight_id": checkin_request.flight_id})
     if not ticket_result:
-        raise HTTPException(status_code=404, detail="Ticket not found.")
+        raise HTTPException(status_code=400, detail="Incorrect data")
 
     if not flight_result:
-        raise HTTPException(status_code=404, detail="Flight not found.")
+        raise HTTPException(status_code=400, detail="Flight not found.")
 
     # Проверка наличия указанного места:
     seat_query = load_query(check_for_seat_availability_file)

@@ -22,5 +22,5 @@ app.include_router(schedules.router, prefix="/api", tags=["schedules"])
 app.include_router(bookings.router, prefix="/api", tags=["bookings"])
 app.include_router(checkin.router, prefix="/api", tags=["checkin"])
 
-#uvicorn.run(app)
+uvicorn.run(app)
 
