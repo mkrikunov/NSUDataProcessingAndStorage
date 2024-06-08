@@ -1,1 +1,2 @@
-SELECT * FROM airports
+SELECT *
+FROM airports_data

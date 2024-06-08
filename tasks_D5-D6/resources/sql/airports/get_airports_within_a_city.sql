@@ -1,1 +1,3 @@
-SELECT * FROM airports WHERE city = :city
+SELECT *
+FROM airports_data
+WHERE city = :city

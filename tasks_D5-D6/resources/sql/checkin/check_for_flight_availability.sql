@@ -1,1 +1,3 @@
-SELECT * FROM flights WHERE flight_id = :flight_id
+SELECT *
+FROM flights
+WHERE flight_id = :flight_id

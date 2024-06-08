@@ -4,7 +4,7 @@ from typing import List
 from fastapi import APIRouter, HTTPException
 from app.database import database
 from app.models import City
-from app.routers import utils
+from app.routers.utils import load_query
 
 router = APIRouter()
 
@@ -18,11 +18,10 @@ get_cities_file = os.path.join(os.path.dirname(__file__), "../../resources/sql/c
 })
 async def get_cities():
     try:
-        query = utils.load_query(get_cities_file)
+        query = load_query(get_cities_file)
         results = await database.fetch_all(query)
         if not results:
             raise HTTPException(status_code=404, detail="No cities found")
         return [City(city=row["city"]) for row in results]
     except Exception as e:
         raise HTTPException(status_code=500, detail="Internal server error.")
-
